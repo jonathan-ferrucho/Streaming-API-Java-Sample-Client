@@ -14,6 +14,10 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import org.apache.http.client.methods.HttpDelete;
@@ -56,7 +60,7 @@ public class StreamingApiClient {
 
 	private static final int COMMIT_TIMEOUT = 60; // seconds
 
-	private static String MAMBU_ENDPOINT = "http://demo_tenant.localhost:8000";
+	private static String MAMBU_ENDPOINT = "http://localHost:8080";
 	private static String SUBSCRIPTION_ENDPOINT = MAMBU_ENDPOINT + "/api/v1/subscriptions";
 	private static String EVENTS_ENDPOINT = SUBSCRIPTION_ENDPOINT + "/%s/events?batch_flush_timeout=5&batch_limit=1&commit_timeout=" + COMMIT_TIMEOUT;
 	private static String CURSORS_ENDPOINT = SUBSCRIPTION_ENDPOINT + "/%s/cursors";
@@ -101,7 +105,14 @@ public class StreamingApiClient {
 
 		HttpPost httpPost = buildSubscriptionHttpPost(subscription, streamingApiKey);
 
-		Response response = client.executeRequest(httpPost);
+		HashMap<Integer,String> histograma= new HashMap<Integer, String>();
+
+		histograma.put(1,"1: ");
+		histograma.put(2,"2: ");
+		histograma.put(3,"3: ");
+		histograma.put(4,"4: ");
+		histograma.put(5,"5: ");
+	 histograma.forEach((k, v) -> System.out.println(v));
 
 		return getSubscription(response);
 	}
