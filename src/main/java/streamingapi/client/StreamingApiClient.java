@@ -105,14 +105,7 @@ public class StreamingApiClient {
 
 		HttpPost httpPost = buildSubscriptionHttpPost(subscription, streamingApiKey);
 
-		HashMap<Integer,String> histograma= new HashMap<Integer, String>();
-
-		histograma.put(1,"1: ");
-		histograma.put(2,"2: ");
-		histograma.put(3,"3: ");
-		histograma.put(4,"4: ");
-		histograma.put(5,"5: ");
-	 histograma.forEach((k, v) -> System.out.println(v));
+		Response response = client.executeRequest(httpPost);
 
 		return getSubscription(response);
 	}
